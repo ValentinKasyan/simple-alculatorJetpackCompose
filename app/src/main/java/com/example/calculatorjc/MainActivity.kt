@@ -20,6 +20,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calculatorjc.ui.theme.CalculatorViewModel
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -27,113 +29,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val scope = rememberCoroutineScope()
-            //import androidx.compose.runtime.*
-            var textFieldState by remember {
-                mutableStateOf("")
-            }
+            val viewModel=viewModel<CalculatorViewModel>()
+            val state=viewModel.state
+            val buttonSpacing=8.dp
 
-            var textFieldCalculation by remember {
-                mutableStateOf("")
-            }
-            Column(
-                modifier = Modifier
-//                    .background(Color.Gray)
-                    .fillMaxHeight(1f)
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                TextField(value = textFieldState, label = {
-//                       Text("0")
-                }, onValueChange = {
-                    textFieldState = it
-                }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                Spacer(modifier = Modifier.height(50.dp))
-                TextField(
-                    value = textFieldCalculation,
-                    label = {},
-                    onValueChange = { textFieldCalculation = it },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Text(text = "Text2", modifier = Modifier.offset(50.dp, 20.dp))
-                Spacer(modifier = Modifier.height(50.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-
-                    ) {
-                    Button(onClick = { scope.launch { textFieldCalculation.plus("7")
-                    } }) {
-                        Text(text = " 7 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 8 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 9 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " * ")
-
-                    }
-
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(110.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-
-                    ) {
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 4 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 5 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 6 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " - ")
-
-                    }
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(110.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-
-                    ) {
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 1 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 2 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " 3 ")
-                    }
-                    Button(onClick = { scope.launch { TODO() } }) {
-                        Text(text = " + ")
-
-                    }
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Button(onClick = { scope.launch { TODO() } }) {
-                    Text(text = " = ")
-
-                }
-            }
         }
 
         @Composable
