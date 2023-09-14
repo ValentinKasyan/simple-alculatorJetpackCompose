@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun CalculatorButton(
-    //смотрим чем кнопки отличаються друг от друга
     symbol: String,
     modifier: Modifier,
     onClick: () -> Unit
